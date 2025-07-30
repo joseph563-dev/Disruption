@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "disruption:block/not_found"
+    }
+  }
+}

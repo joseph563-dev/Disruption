@@ -1,5 +1,9 @@
 package net.JDG.disruption;
 
+import net.JDG.disruption.entity.ModEntities;
+import net.JDG.disruption.entity.client.FakerRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -90,7 +94,12 @@ public class Disruption
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        ModEntities.register(modEventBus);
+
     }
+
+
 
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code
@@ -124,9 +133,7 @@ public class Disruption
     static class ClientModEvents {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            EntityRenderers.register(ModEntities.FAKER.get(), FakerRenderer::new);
         }
     }
 }
