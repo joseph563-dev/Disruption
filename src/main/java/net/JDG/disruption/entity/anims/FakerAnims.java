@@ -1,11 +1,11 @@
-package net.JDG.disruption.entity.client;
+package net.JDG.disruption.entity.anims;
 
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 
-public class FakerAnimations {
+public class FakerAnims {
     public static final AnimationDefinition IDLE = AnimationDefinition.Builder.withLength(1.2083433f).looping()
             .addAnimation("left_arm",
                     new AnimationChannel(AnimationChannel.Targets.ROTATION,

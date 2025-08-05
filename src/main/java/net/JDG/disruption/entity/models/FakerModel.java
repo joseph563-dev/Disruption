@@ -1,9 +1,10 @@
-package net.JDG.disruption.entity.client;
+package net.JDG.disruption.entity.models;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.JDG.disruption.Disruption;
-import net.JDG.disruption.entity.custom.FakerEntity;
+import net.JDG.disruption.entity.FakerEntity;
+import net.JDG.disruption.entity.anims.FakerAnims;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -53,8 +54,8 @@ public class FakerModel<T extends FakerEntity> extends HierarchicalModel<T> {
             this.root().getAllParts().forEach(ModelPart::resetPose);
             this.applyHeadRotation(netHeadYaw, headPitch);
 
-            this.animateWalk(FakerAnimations.WALK,limbSwing,limbSwingAmount, 2f, 2.5f);
-            this.animate(entity.idleAnimationState, FakerAnimations.IDLE, ageInTicks, 1f);
+            this.animateWalk(FakerAnims.WALK,limbSwing,limbSwingAmount, 2f, 2.5f);
+            this.animate(entity.idleAnimationState, FakerAnims.IDLE, ageInTicks, 1f);
 
 
         }

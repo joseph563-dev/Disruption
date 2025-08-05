@@ -1,8 +1,9 @@
-package net.JDG.disruption.entity.client;
+package net.JDG.disruption.entity.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.JDG.disruption.Disruption;
-import net.JDG.disruption.entity.custom.MagnusEntity;
+import net.JDG.disruption.entity.MagnusEntity;
+import net.JDG.disruption.entity.models.MagnusModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

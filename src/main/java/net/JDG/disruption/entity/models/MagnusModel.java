@@ -1,9 +1,9 @@
-package net.JDG.disruption.entity.client;
+package net.JDG.disruption.entity.models;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.JDG.disruption.Disruption;
-import net.JDG.disruption.entity.custom.MagnusEntity;
+import net.JDG.disruption.entity.MagnusEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
