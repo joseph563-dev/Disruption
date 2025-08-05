@@ -2,5 +2,6 @@
   "item.disruption.null_bread": "Null Bread",
   "block.disruption.not_found": " ",
 
-"entity.mscourse.faker": "Faker"
+  "entity.mscourse.magnus": "Magnus Deus",
+  "entity.mscourse.faker": "Faker",
 }

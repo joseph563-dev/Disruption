@@ -1,21 +1,13 @@
 package net.JDG.disruption.entity.custom;
 
-import io.netty.handler.timeout.IdleState;
 import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.trialspawner.PlayerDetector;
-import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 
 public class FakerEntity extends Monster {
 
@@ -24,20 +16,23 @@ public class FakerEntity extends Monster {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(0, new LookAtPlayerGoal(this, Player.class, 1.0f));
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 1.0f));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 3000.0, true));
+
     }
 
-    public static AttributeSupplier.Builder createAttributes(){
+    public static AttributeSupplier.Builder createAttributes() {
         return Monster.createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 50d)
-                .add(Attributes.MOVEMENT_SPEED, 20)
+                .add(Attributes.MOVEMENT_SPEED, 1)
                 .add(Attributes.ATTACK_DAMAGE, 90)
-                .add(Attributes.ATTACK_SPEED, 9000);
+                .add(Attributes.ATTACK_SPEED, 9000)
+                .add(Attributes.FOLLOW_RANGE, 24d);
+
 
     }
-
 
 
     public FakerEntity(EntityType<? extends Monster> entityType, Level level) {
@@ -56,6 +51,8 @@ public class FakerEntity extends Monster {
 
     }
 
+
+
     @Override
     public void tick() {
         super.tick();
@@ -65,7 +62,8 @@ public class FakerEntity extends Monster {
         }
 
 
-        }
     }
+
+}
 
 

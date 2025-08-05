@@ -2,6 +2,7 @@ package net.JDG.disruption.entity;
 
 import net.JDG.disruption.Disruption;
 import net.JDG.disruption.entity.custom.FakerEntity;
+import net.JDG.disruption.entity.custom.MagnusEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -17,6 +18,11 @@ public class ModEntities {
     public static final Supplier<EntityType<FakerEntity>> FAKER =
             ENTITY_TYPES.register("faker", () -> EntityType.Builder.of(FakerEntity::new, MobCategory.MONSTER)
                     .sized(0.75f, 0.35f).build("faker"));
+
+    public static final Supplier<EntityType<MagnusEntity>> MAGNUS =
+            ENTITY_TYPES.register("magnus", () -> EntityType.Builder.of(MagnusEntity::new, MobCategory.MONSTER)
+                    .sized(0.75f, 0.35f).build("magnus"));
+
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

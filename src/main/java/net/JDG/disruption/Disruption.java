@@ -2,8 +2,10 @@ package net.JDG.disruption;
 
 import net.JDG.disruption.entity.ModEntities;
 import net.JDG.disruption.entity.client.FakerRenderer;
+import net.JDG.disruption.entity.client.MagnusRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -132,8 +134,9 @@ public class Disruption
     @EventBusSubscriber(modid = Disruption.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     static class ClientModEvents {
         @SubscribeEvent
-        static void onClientSetup(FMLClientSetupEvent event) {
-            EntityRenderers.register(ModEntities.FAKER.get(), FakerRenderer::new);
+        public static void registerRenderer(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerEntityRenderer(ModEntities.FAKER.get(), FakerRenderer::new);
+            event.registerEntityRenderer(ModEntities.MAGNUS.get(), MagnusRenderer::new);
         }
     }
 }
