@@ -1,6 +1,8 @@
 package net.JDG.disruption.registries;
 
 import net.JDG.disruption.Disruption;
+import net.JDG.disruption.entity.ZackEntity;
+import net.JDG.disruption.entity.renderers.ZackRenderer;
 import net.JDG.disruption.entity.models.FakerModel;
 import net.JDG.disruption.entity.renderers.FakerRenderer;
 import net.JDG.disruption.entity.models.MagnusModel;
@@ -32,6 +34,10 @@ public class JDGEntities {
             ENTITY_TYPES.register("magnus", () -> EntityType.Builder.of(MagnusEntity::new, MobCategory.MONSTER)
                     .sized(32.75f, 61.4375f).build("magnus"));
 
+    public static final Supplier<EntityType<ZackEntity>> ZACK =
+            ENTITY_TYPES.register("zack", () -> EntityType.Builder.of(ZackEntity::new, MobCategory.MONSTER)
+                    .sized(0.75f, 2f).build("zack"));
+
 
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -43,12 +49,14 @@ public class JDGEntities {
     public static void registerRenderer(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(JDGEntities.FAKER.get(), FakerRenderer::new);
         event.registerEntityRenderer(JDGEntities.MAGNUS.get(), MagnusRenderer::new);
+        event.registerEntityRenderer(JDGEntities.ZACK.get(), ZackRenderer::new);
     }
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(JDGEntities.FAKER.get(), FakerEntity.createAttributes().build());
         event.put(JDGEntities.MAGNUS.get(), MagnusEntity.createAttributes().build());
+        event.put(JDGEntities.ZACK.get(), ZackEntity.createAttributes().build());
     }
 
     public static void register(IEventBus eventBus) {

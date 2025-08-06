@@ -16,5 +16,6 @@ public class JDGEvents {
                 if (event.getEntity() instanceof Player player) {
                         player.sendSystemMessage(Component.literal(player.getName().getString() + " joined the game").withStyle(Style.EMPTY.withColor(ChatFormatting.YELLOW)));
                 }
+
         }
 }

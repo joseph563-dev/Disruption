@@ -15,7 +15,7 @@ public class MagnusRenderer extends MobRenderer<MagnusEntity, MagnusModel<Magnus
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MagnusEntity etity) {
+    public ResourceLocation getTextureLocation(MagnusEntity entity) {
         return ResourceLocation.fromNamespaceAndPath(Disruption.MOD_ID, "textures/entity/magnus.png");
     }
 
