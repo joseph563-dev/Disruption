@@ -14,7 +14,6 @@ public class ZackRenderer extends MobRenderer<ZackEntity, PlayerModel<ZackEntity
         super(context, new PlayerModel<>(context.bakeLayer(ModelLayers.PLAYER), false), 0.5f);
     }
 
-
     @Override
     public ResourceLocation getTextureLocation(ZackEntity entity) {
         return ResourceLocation.fromNamespaceAndPath(Disruption.MOD_ID, "textures/entity/zack.png");

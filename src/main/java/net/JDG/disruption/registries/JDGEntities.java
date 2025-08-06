@@ -23,21 +23,34 @@ import java.util.function.Supplier;
 
 @EventBusSubscriber
 public class JDGEntities {
+    /**
+     * This class is where you register entities like {@link MagnusEntity}
+     * Be sure to register the entity, layer location, renderer, and attributes of your entity.
+     */
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Disruption.MOD_ID);
 
     public static final Supplier<EntityType<FakerEntity>> FAKER =
             ENTITY_TYPES.register("faker", () -> EntityType.Builder.of(FakerEntity::new, MobCategory.MONSTER)
-                    .sized(0.75f, 2.8f).build("faker"));
-
+                    .sized(0.75f, 2.8f)
+                    .build("faker")
+            );
+    /**
+     * .setTrackingRange() can be used to make an entity render based on
+     * how far the range is, so for Magnus here you can see him up to 1024 blocks
+     */
     public static final Supplier<EntityType<MagnusEntity>> MAGNUS =
             ENTITY_TYPES.register("magnus", () -> EntityType.Builder.of(MagnusEntity::new, MobCategory.MONSTER)
-                    .sized(32.75f, 61.4375f).build("magnus"));
+                    .sized(32.75f, 61.4375f)
+                    .setTrackingRange(1024)
+                    .build("magnus")
+            );
 
     public static final Supplier<EntityType<ZackEntity>> ZACK =
             ENTITY_TYPES.register("zack", () -> EntityType.Builder.of(ZackEntity::new, MobCategory.MONSTER)
-                    .sized(0.75f, 2f).build("zack"));
-
+                    .sized(0.75f, 2f)
+                    .build("zack")
+            );
 
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {

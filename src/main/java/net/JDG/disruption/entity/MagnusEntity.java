@@ -20,17 +20,29 @@ public class MagnusEntity extends Monster {
     }
 
     @Override
-        protected void registerGoals() {
-            this.goalSelector.addGoal(1, new FloatGoal(this));
-            this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 3000.0, true));
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 3000.0, true));
 
-        }
-
-        public static AttributeSupplier.Builder createAttributes() {
-            return Monster.createLivingAttributes()
-                    .add(Attributes.MAX_HEALTH, 50)
-                    .add(Attributes.ATTACK_DAMAGE, 90)
-                    .add(Attributes.FOLLOW_RANGE, 10000000)
-                    .add(Attributes.ATTACK_SPEED, 9000);
-        }
     }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createLivingAttributes()
+                .add(Attributes.MAX_HEALTH, 50)
+                .add(Attributes.ATTACK_DAMAGE, 90)
+                .add(Attributes.FOLLOW_RANGE, 10000000)
+                .add(Attributes.ATTACK_SPEED, 9000);
+    }
+
+    /**
+     * This is an entity tick, this runs every tick when your entity is spawned in and loaded
+     * A LOT of logic is done here, but for now we have - this.setPersistenceRequired(); -
+     * This makes him no longer despawn
+     */
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.setPersistenceRequired();
+    }
+}

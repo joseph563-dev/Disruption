@@ -5,6 +5,7 @@ import net.JDG.disruption.Disruption;
 import net.JDG.disruption.entity.MagnusEntity;
 import net.JDG.disruption.entity.models.MagnusModel;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -17,11 +18,5 @@ public class MagnusRenderer extends MobRenderer<MagnusEntity, MagnusModel<Magnus
     @Override
     public ResourceLocation getTextureLocation(MagnusEntity entity) {
         return ResourceLocation.fromNamespaceAndPath(Disruption.MOD_ID, "textures/entity/magnus.png");
-    }
-
-    @Override
-    public void render(MagnusEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
-
-        super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }
 }

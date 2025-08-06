@@ -35,8 +35,6 @@ public class FakerEntity extends Monster {
                 .add(Attributes.ATTACK_DAMAGE, 90)
                 .add(Attributes.ATTACK_SPEED, 9000)
                 .add(Attributes.FOLLOW_RANGE, 24);
-
-
     }
 
     private void setupAnimationStates() {
@@ -48,9 +46,14 @@ public class FakerEntity extends Monster {
         }
     }
 
+    /**
+     * Go to {@link MagnusEntity#tick()} for an explanation on the tick
+     */
+
     @Override
     public void tick() {
         super.tick();
+        this.setPersistenceRequired();
 
         if (this.level().isClientSide) {
             this.setupAnimationStates();

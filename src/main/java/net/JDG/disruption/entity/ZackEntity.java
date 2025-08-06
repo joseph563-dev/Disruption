@@ -17,30 +17,34 @@ public class ZackEntity extends Monster {
 
     public ZackEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
-
-
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 20));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 20));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 500d)
-                .add(Attributes.MOVEMENT_SPEED, 0.004)
+                .add(Attributes.MAX_HEALTH, 50d)
+                .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.ATTACK_DAMAGE, 90)
-                .add(Attributes.ATTACK_SPEED, 900)
+                .add(Attributes.ATTACK_SPEED, 9000)
                 .add(Attributes.FOLLOW_RANGE, 24);
+    }
 
+    /**
+     * Go to {@link MagnusEntity#tick()} for an explanation on the tick
+     */
 
+    @Override
+    public void tick() {
+        super.tick();
+        this.setPersistenceRequired();
     }
 }
-
-
-

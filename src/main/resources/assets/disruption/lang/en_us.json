@@ -1,6 +1,9 @@
 {
-  "item.disruption.null_bread": "Null Bread",
-  "block.disruption.not_found": " ",
+  "disruption.tab_egg": "JDG Spawn Eggs",
+
+  "item.disruption.faker_egg": "Faker Spawn Egg",
+  "item.disruption.magnus_egg": "Magnus Spawn Egg",
+  "item.disruption.zack_egg": "Zack Spawn Egg",
 
   "entity.disruption.magnus": "Magnus Deus",
   "entity.disruption.faker": "Faker",

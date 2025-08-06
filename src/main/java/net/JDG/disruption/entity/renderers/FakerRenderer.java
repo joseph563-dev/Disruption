@@ -18,10 +18,4 @@ public class FakerRenderer extends MobRenderer<FakerEntity, FakerModel<FakerEnti
     public ResourceLocation getTextureLocation(FakerEntity entity) {
         return ResourceLocation.fromNamespaceAndPath(Disruption.MOD_ID, "textures/entity/faker.png");
     }
-
-    @Override
-    public void render(FakerEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
-
-        super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
-    }
 }
