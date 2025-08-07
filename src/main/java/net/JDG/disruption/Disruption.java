@@ -48,6 +48,8 @@ public class Disruption {
      * One of those being in {@link JDGCreativeTabs}
      * To access these features you need to add DEV=true to your EVs
      * If you don't know how ask me
+     * Also to make something dev only all you need is this little line
+     * if (Disruption.IS_DEV) {
      */
 
     public static final boolean IS_DEV = "true".equalsIgnoreCase(System.getenv("DEV"));
