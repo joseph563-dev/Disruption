@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
-import org.w3c.dom.Attr;
+
 
 
 public class MagnusEntity extends Monster {

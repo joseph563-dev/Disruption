@@ -39,11 +39,17 @@ public class JDGEntities {
      * .setTrackingRange() can be used to make an entity render based on
      * how far the range is, so for Magnus here you can see him up to 1024 blocks
      */
+
+    /** i changed magnus width to 1.5 seem like it works if you need the old numbers it's here
+     * 32.75
+     */
+
     public static final Supplier<EntityType<MagnusEntity>> MAGNUS =
             ENTITY_TYPES.register("magnus", () -> EntityType.Builder.of(MagnusEntity::new, MobCategory.MONSTER)
-                    .sized(32.75f, 61.4375f)
+                    .sized(1.5f, 61.4375f)
                     .setTrackingRange(1024)
                     .build("magnus")
+
             );
 
     public static final Supplier<EntityType<ZackEntity>> ZACK =
