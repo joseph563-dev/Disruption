@@ -6,7 +6,6 @@ import net.jdg.disruption.forcers.MixinForcer;
 import net.jdg.disruption.registries.JDGCreativeTabs;
 import net.jdg.disruption.registries.JDGEntities;
 import net.jdg.disruption.registries.JDGItems;
-import net.jdg.disruption.worldgen.CodecUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -67,13 +66,6 @@ public class Disruption {
 
     public static ResourceLocation createId(String name) {
         return ResourceLocation.fromNamespaceAndPath("disruption", name);
-    }
-
-    public static GsonBuilder getSettingsGson() {
-        GsonBuilder gson = new GsonBuilder();
-        CodecUtil.registerTypeAdapter(gson, ConfiguredLayers.class, ConfiguredLayers.CODEC);
-        CodecUtil.registerTypeAdapter(gson, ResourceLocation.class, ResourceLocation.CODEC);
-        return gson;
     }
 
     /**
