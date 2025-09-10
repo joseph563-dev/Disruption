@@ -32,7 +32,7 @@ public class JDGResourcePackForcer {
 
     public static void periodBABY(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-            Path resourcePath = ModList.get().getModFileById(Disruption.MOD_ID).getFile().findResource("packs/beata_resources");
+            Path resourcePath = ModList.get().getModFileById(Disruption.MOD_ID).getFile().findResource("packs/beta_resources");
             PackMetadataSection metadata = new PackMetadataSection(Component.translatable(":thumbs_up:"), SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES));
             event.addRepositorySource((source) ->
                     source.accept(new Pack(
