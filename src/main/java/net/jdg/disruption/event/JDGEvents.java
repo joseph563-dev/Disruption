@@ -13,8 +13,9 @@ public class JDGEvents {
 
         @SubscribeEvent
         private static void onPLayerJoins (PlayerEvent.PlayerLoggedInEvent event) {
-                if (event.getEntity() instanceof Player player) {
-                        player.sendSystemMessage(Component.literal(player.getName().getString() + " joined the game").withStyle(Style.EMPTY.withColor(ChatFormatting.YELLOW)));
-                }
+                // Migrated to PlayerJoinMessageEvent
+//                if (event.getEntity() instanceof Player player) {
+//                        player.sendSystemMessage(Component.literal(player.getName().getString() + " joined the game").withStyle(Style.EMPTY.withColor(ChatFormatting.YELLOW)));
+//                }
         }
 }

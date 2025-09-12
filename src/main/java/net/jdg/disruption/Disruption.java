@@ -1,5 +1,6 @@
 package net.jdg.disruption;
 
+import net.jdg.disruption.event_engine.EventEngine;
 import net.jdg.disruption.forcers.JDGResourcePackForcer;
 import net.jdg.disruption.forcers.MixinForcer;
 import net.jdg.disruption.registries.JDGCreativeTabs;
@@ -17,13 +18,10 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.common.NeoForge;
 
-import javax.tools.JavaCompiler;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.instrument.ClassDefinition;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,6 +35,8 @@ public class Disruption {
     public static ResourceLocation sunTexture = ResourceLocation.withDefaultNamespace("textures/environment/sun.png");
     public static float moonSize = 20f;
     public static float sunSize = 30f;
+    public static EventEngine eventEngine;
+
     //yes :thumbs_up:
 
     /**
@@ -45,12 +45,11 @@ public class Disruption {
      */
 
     public Disruption(IEventBus bus, ModContainer modContainer) {
-
         if (IS_DEV) {
             System.out.println("Purely a test. You, sir, are in dev mode");
         }
-        System.out.println(Arrays.toString(Package.getPackages()));
         NeoForge.EVENT_BUS.register(this);
+        eventEngine = new EventEngine(bus);
 
         JDGEntities.register(bus);
         JDGItems.register(bus);
@@ -72,6 +71,7 @@ public class Disruption {
         classes.forEach((clazz) -> list.add(clazz.getSimpleName()));
         return list;
     }
+
     @SuppressWarnings("rawtypes")
     public Set<Class> findAllClassesUsingClassLoader(String packageName) {
         InputStream stream = ClassLoader.getSystemClassLoader()
@@ -92,6 +92,7 @@ public class Disruption {
             throw new RuntimeException("failed to init mixin classes");
         }
     }
+
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         LOGGER.info("Mrow, we on a server");
