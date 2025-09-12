@@ -22,32 +22,34 @@ public class JDGCommands {
     @SubscribeEvent
     public static void init(RegisterCommandsEvent event) {
         var dispatcher = event.getDispatcher();
-        event.getDispatcher().register(dispatcher.register(literal("itd")
-                .then(argument("event", StringArgumentType.string()).suggests((a, b) -> EventEngine.suggestionProvider.getSuggestions(a, b))
-                        .executes(context -> {
-                            final String value = StringArgumentType.getString(context, "event");
-                            var hasEvent = EventEngine.suggestionProvider.eventMap.containsKey(value);
-                            if (hasEvent) {
-                                context.getSource().sendSystemMessage(Component.literal("Attempting to run %s.".formatted(value)));
-                                Disruption.eventEngine.triggerEvent(value, new EventTuples(context.getSource().getLevel(), context.getSource().getEntity().getOnPos(), context.getSource().getLevel().getBlockState(context.getSource().getEntity().getOnPos()), context.getSource().getLevel().getBlockEntity(context.getSource().getEntity().getOnPos()), context.getSource().getPlayer(), List.of()));
-                            } else {
-                                context.getSource().sendSystemMessage(Component.literal("Invalid Event: %s".formatted(value)));
-                            }
-                            return hasEvent ? 1 : 0;
-                        }))).createBuilder());
-        event.getDispatcher().register(dispatcher.register(literal("event")
-                .then(argument("event", StringArgumentType.string()).suggests(EventEngine.suggestionProvider)
-                        .executes(context -> {
-                            final String value = StringArgumentType.getString(context, "event");
-                            var hasEvent = EventEngine.suggestionProvider.eventMap.containsKey(value);
-                            if (hasEvent) {
-                                context.getSource().sendSystemMessage(Component.literal("Attempting to run %s.".formatted(value)));
-                                Disruption.eventEngine.triggerEvent(value, new EventTuples(context.getSource().getLevel(), context.getSource().getEntity().getOnPos(), context.getSource().getLevel().getBlockState(context.getSource().getEntity().getOnPos()), context.getSource().getLevel().getBlockEntity(context.getSource().getEntity().getOnPos()), context.getSource().getPlayer(), List.of()));
-                            } else {
-                                context.getSource().sendSystemMessage(Component.literal("Invalid Event: %s".formatted(value)));
-                            }
-                            return hasEvent ? 1 : 0;
-                        }))).createBuilder());
+        if (Disruption.IS_DEV) {
+            event.getDispatcher().register(dispatcher.register(literal("itd")
+                    .then(argument("event", StringArgumentType.string()).suggests((a, b) -> EventEngine.suggestionProvider.getSuggestions(a, b))
+                            .executes(context -> {
+                                final String value = StringArgumentType.getString(context, "event");
+                                var hasEvent = EventEngine.suggestionProvider.eventMap.containsKey(value);
+                                if (hasEvent) {
+                                    context.getSource().sendSystemMessage(Component.literal("Attempting to run %s.".formatted(value)));
+                                    Disruption.eventEngine.triggerEvent(value, new EventTuples(context.getSource().getLevel(), context.getSource().getEntity().getOnPos(), context.getSource().getLevel().getBlockState(context.getSource().getEntity().getOnPos()), context.getSource().getLevel().getBlockEntity(context.getSource().getEntity().getOnPos()), context.getSource().getPlayer(), List.of()));
+                                } else {
+                                    context.getSource().sendSystemMessage(Component.literal("Invalid Event: %s".formatted(value)));
+                                }
+                                return hasEvent ? 1 : 0;
+                            }))).createBuilder());
+            event.getDispatcher().register(dispatcher.register(literal("event")
+                    .then(argument("event", StringArgumentType.string()).suggests(EventEngine.suggestionProvider)
+                            .executes(context -> {
+                                final String value = StringArgumentType.getString(context, "event");
+                                var hasEvent = EventEngine.suggestionProvider.eventMap.containsKey(value);
+                                if (hasEvent) {
+                                    context.getSource().sendSystemMessage(Component.literal("Attempting to run %s.".formatted(value)));
+                                    Disruption.eventEngine.triggerEvent(value, new EventTuples(context.getSource().getLevel(), context.getSource().getEntity().getOnPos(), context.getSource().getLevel().getBlockState(context.getSource().getEntity().getOnPos()), context.getSource().getLevel().getBlockEntity(context.getSource().getEntity().getOnPos()), context.getSource().getPlayer(), List.of()));
+                                } else {
+                                    context.getSource().sendSystemMessage(Component.literal("Invalid Event: %s".formatted(value)));
+                                }
+                                return hasEvent ? 1 : 0;
+                            }))).createBuilder());
+        }
     }
 
 

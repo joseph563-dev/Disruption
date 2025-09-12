@@ -5,7 +5,6 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.jdg.disruption.event_engine.impl.Event;
-import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.SharedSuggestionProvider;
 
@@ -18,9 +17,7 @@ public class EventSuggestionProvider implements SuggestionProvider<CommandSource
 
     @Override
     public CompletableFuture<Suggestions> getSuggestions(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) {
-        if (eventMap.isEmpty()) {
-            return Suggestions.empty();
-        }
+        if (eventMap.isEmpty())  return Suggestions.empty();
         for (String event : eventMap.keySet()) {
             if (event != null && SharedSuggestionProvider.matchesSubStr(builder.getRemaining(), event)) {
                 builder.suggest(event);

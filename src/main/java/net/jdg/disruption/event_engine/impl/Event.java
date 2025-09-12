@@ -44,12 +44,8 @@ public interface Event {
         public boolean check(EventTuples tuples) {
             for (Function<EventTuples, Boolean> cond : conds) {
                 var result = cond.apply(tuples);
-                if (or && result) {
-                    return true;
-                }
-                if (!or && !result) {
-                    return false;
-                }
+                if (or && result) return true;
+                if (!or && !result) return false;
             }
             return true;
         }
