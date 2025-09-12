@@ -3,6 +3,7 @@ package net.jdg.disruption.forcers;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import net.jdg.disruption.Disruption;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -11,7 +12,7 @@ import java.util.List;
 public class MixinForcer {
 
     /**
-     * Anytime we make a mix-in we must add it to the check in the main mod class {@link net.jdg.disruption.Disruption}
+     * Anytime we make a mix-in we must add it to the check in the main mod class {@link Disruption}
      */
 
     public static void checkMixinList(String resourcePath, List<String> expectedMixins) {
@@ -29,6 +30,7 @@ public class MixinForcer {
             }
 
             JsonArray mixinArray = root.getAsJsonArray("mixins");
+            mixinArray.addAll(root.getAsJsonArray("client"));
 
             for (String expected : expectedMixins) {
                 boolean found = false;

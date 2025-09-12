@@ -1,6 +1,8 @@
 package net.jdg.disruption.util.value_animation;
 
 import net.jdg.disruption.util.value_animation.interpolator.Interpolater;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.entity.LightningBoltRenderer;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -53,13 +55,10 @@ public class VarAnimation<T> {
      */
     @SuppressWarnings("unchecked")
     public final VarAnimation<T> bake() {
-
         if (baked) return this;
         bakedFrames = (T[]) new Object[length + 1];
         for (int i = 0; i < length + 1; ++i) {
-
             bakedFrames[i] = getValueAtTime(i);
-
         }
         baked = true;
         stop(false);
@@ -192,7 +191,6 @@ public class VarAnimation<T> {
                 var right = keyframes.get(max);
                 var minVal = left.b();
                 var maxVal = right.b();
-              //  System.out.println(min + ":" + max);
 
                 var interpolator = left.a();
                 var delta = (float) (time - min) / (max - min);

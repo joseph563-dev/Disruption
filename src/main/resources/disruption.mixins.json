@@ -4,8 +4,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "NarMixin",
-    "NarNarMixin",
     "NarNarNarMixin"
   ],
-  "minVersion": "0.8"
+  "minVersion": "0.8",
+  "client": [
+    "LevelRendererMixin",
+    "NarNarMixin"
+  ]
 }

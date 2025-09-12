@@ -17,17 +17,17 @@ public class JDGItems {
             DeferredRegister.create(BuiltInRegistries.ITEM, Disruption.MOD_ID);
 
     public static  final DeferredHolder<Item, Item> FAKER_SPAWN_EGG = JDG_ITEMS.register("faker_egg",
-            ()-> new DeferredSpawnEggItem(JDGEntities.FAKER, 000000, 000000,
+            ()-> new DeferredSpawnEggItem(net.jdg.disruption.registries.JDGEntities.FAKER, 000000, 000000,
                     new Item.Properties())
     );
 
     public static  final DeferredHolder<Item, Item> MAGNUS_SPAWN_EGG = JDG_ITEMS.register("magnus_egg",
-            ()-> new DeferredSpawnEggItem(JDGEntities.MAGNUS, 100000, 000000,
+            ()-> new DeferredSpawnEggItem(net.jdg.disruption.registries.JDGEntities.MAGNUS, 100000, 000000,
                     new Item.Properties())
     );
 
     public static  final DeferredHolder<Item, Item> ZACK_SPAWN_EGG = JDG_ITEMS.register("zack_egg",
-            ()-> new DeferredSpawnEggItem(JDGEntities.ZACK, 200000, 000000,
+            ()-> new DeferredSpawnEggItem(net.jdg.disruption.registries.JDGEntities.ZACK, 200000, 000000,
                     new Item.Properties())
     );
 
