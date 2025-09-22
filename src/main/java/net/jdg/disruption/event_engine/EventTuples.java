@@ -10,4 +10,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public record EventTuples(Level world, @Nullable BlockPos pos, @Nullable BlockState state, @Nullable BlockEntity blockEntity, @Nullable ServerPlayer playerEntity, List<Object> extra) {
+
+    public static EventTuples stripExtra(EventTuples tuples) {
+        return new EventTuples(tuples.world, tuples.pos, tuples.state, tuples.blockEntity, tuples.playerEntity, List.of());
+    }
+
 }

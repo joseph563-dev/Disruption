@@ -4,12 +4,14 @@ package net.jdg.disruption.event_engine;
 import net.jdg.disruption.Disruption;
 import net.jdg.disruption.event_engine.event.PlayerJoinMessageEvent;
 import net.jdg.disruption.event_engine.impl.*;
+import net.jdg.disruption.util.ChatSequence;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.ServerChatEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
@@ -17,6 +19,7 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @EventBusSubscriber
@@ -24,6 +27,7 @@ public class EventEngine {
     private ArrayList<Event> events = new ArrayList<>();
     public static EventSuggestionProvider suggestionProvider;
     public static ArrayList<String> eventNames = new ArrayList<>();
+    public static HashMap<String, ChatSequence> chatSequences = new HashMap<>();
 
     public EventEngine(IEventBus bus) {
         registerEvents();
@@ -46,6 +50,16 @@ public class EventEngine {
     public void triggerEvent(String eventName, EventTuples tuples) {
         var event = suggestionProvider.eventMap.get(eventName);
         event.trigger(tuples);
+    }
+
+    @SubscribeEvent
+    public static void chatSent(ServerChatEvent serverChatEvent) {
+        for (Event event : Disruption.eventEngine.events) {
+            if (event instanceof OnChatSentEvent chatSentEvent) {
+                var player = serverChatEvent.getPlayer();
+                chatSentEvent.trigger(new EventTuples(player.level(), player.getOnPos(),null, null,player, List.of(serverChatEvent.getMessage())));
+            }
+        }
     }
 
     @SubscribeEvent
@@ -92,6 +106,7 @@ public class EventEngine {
             var serverWorld = serverTickEvent.getServer().getLevel(dim);
             if (serverWorld == null) return;
             for (ServerPlayer entity : serverWorld.getPlayers((a) -> true)) {
+                for (ChatSequence sequence : chatSequences.values()) sequence.tick(entity);
                 for (Event event : Disruption.eventEngine.events) {
                     if (event instanceof TimeEvent timeEvent) {
                         var tuples = new EventTuples(serverWorld, null, null, null, entity, List.of());
