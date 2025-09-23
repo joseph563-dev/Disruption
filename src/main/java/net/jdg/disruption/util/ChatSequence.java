@@ -22,7 +22,7 @@ public class ChatSequence {
     @SuppressWarnings("unchecked")
     private ChatSequence(ArrayList<Pair<Component, Integer[]>> sequence, String id, boolean ticksByDefault) {
         if (ticksByDefault) EventEngine.chatSequences.put(id, this);
-        this.sequence = (Pair<Component, Integer[]>[]) sequence.toArray(new Pair<?>[]{});
+        this.sequence = (Pair<Component, Integer[]>[]) sequence.toArray(new Pair<?, ?>[]{});
         step = sequence.size();
         if (!sequence.isEmpty()) {
             timeLeft = sequence.getFirst().getSecond()[0] + Mth.nextInt(RandomSource.create(), -sequence.getFirst().getSecond()[1], sequence.getFirst().getSecond()[1]);

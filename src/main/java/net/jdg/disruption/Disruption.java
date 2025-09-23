@@ -6,6 +6,7 @@ import net.jdg.disruption.forcers.MixinForcer;
 import net.jdg.disruption.registries.JDGCreativeTabs;
 import net.jdg.disruption.registries.JDGEntities;
 import net.jdg.disruption.registries.JDGItems;
+import net.jdg.disruption.util.ChatSequence;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -85,6 +86,11 @@ public class Disruption {
 
     @SuppressWarnings("rawtypes")
     private Class getClass(String className, String packageName) {
+        var seq = ChatSequence.ChatSequenceBuilder.begin()
+                .add("number one with a one second delay", 20)
+                .add("same as first but with a bit of randomness to the delay", 20, 5)
+                .build();
+
         try {
             return Class.forName(packageName + "."
                     + className.substring(0, className.lastIndexOf('.')));
