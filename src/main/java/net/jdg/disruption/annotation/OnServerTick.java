@@ -23,7 +23,7 @@ public @interface OnServerTick {
             return new ArrayList<>(methods);
         }
         public static void addMarkedMethods() {
-            methods.addAll(Arrays.stream(AnnotationUtil.getMethodsWithAnnotationInPackage("org.shadowmaster435", OnServerTick.class, MinecraftServer.class)).toList());
+            methods.addAll(Arrays.stream(AnnotationUtil.getMethodsWithAnnotationInPackage("net.jdg.disruption", OnServerTick.class, MinecraftServer.class)).toList());
         }
     }
 }

@@ -72,6 +72,7 @@ public class EventEngine {
             }
         }
     }
+
     @SubscribeEvent
     public static void useBlock(UseItemOnBlockEvent blockEvent) {
         var player = blockEvent.getPlayer();
