@@ -1,6 +1,7 @@
 package net.jdg.disruption.util.misc;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.function.Function;
 
 public class ArrayUtil {
@@ -18,6 +19,17 @@ public class ArrayUtil {
         }
         System.arraycopy(newArr, 0, array, 0, array.length);
     }
+
+    public static <T> boolean equals(T[] a, T[] b) {
+        if (a.length != b.length) return false;
+        for (int i = 0; i < a.length; ++i) {
+            if (!Objects.equals(a[i], b[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     @SuppressWarnings("unchecked")
     public static <T> T[] resizeArray(T[] array, int newSize) {

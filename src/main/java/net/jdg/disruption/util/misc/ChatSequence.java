@@ -1,13 +1,11 @@
-package net.jdg.disruption.util;
+package net.jdg.disruption.util.misc;
 
 import com.mojang.datafixers.util.Pair;
 import net.jdg.disruption.event_engine.EventEngine;
 import net.minecraft.network.chat.*;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 

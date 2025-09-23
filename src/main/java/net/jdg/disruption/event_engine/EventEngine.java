@@ -2,9 +2,10 @@ package net.jdg.disruption.event_engine;
 
 
 import net.jdg.disruption.Disruption;
+import net.jdg.disruption.annotation.OnServerTick;
 import net.jdg.disruption.event_engine.event.PlayerJoinMessageEvent;
 import net.jdg.disruption.event_engine.impl.*;
-import net.jdg.disruption.util.ChatSequence;
+import net.jdg.disruption.util.misc.ChatSequence;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
@@ -102,6 +103,13 @@ public class EventEngine {
 
     @SubscribeEvent
     public static void serverTick(ServerTickEvent.Pre serverTickEvent) {
+        OnServerTick.ServerTickMethods.getServerMethods().forEach(method -> {
+            try {
+                method.invoke(serverTickEvent.getServer());
+            } catch (Throwable e) {
+                throw new RuntimeException(e);
+            }
+        });
         for (ResourceKey<Level> dim : serverTickEvent.getServer().levelKeys()) {
             var serverWorld = serverTickEvent.getServer().getLevel(dim);
             if (serverWorld == null) return;
