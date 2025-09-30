@@ -1,6 +1,7 @@
 package net.jdg.disruption.annotation;
 
 import net.minecraft.server.MinecraftServer;
+import net.neoforged.fml.event.config.ModConfigEvent;
 
 import java.lang.annotation.*;
 import java.lang.invoke.MethodHandle;
@@ -18,7 +19,8 @@ public @interface OnServerTick {
 
         private static final ArrayList<MethodHandle> methods = new ArrayList<>();
 
-
+        public static void printMethodClasses() {
+        }
         public static ArrayList<MethodHandle> getServerMethods() {
             return new ArrayList<>(methods);
         }

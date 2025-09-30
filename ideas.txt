@@ -1,0 +1,1 @@
+reputation influences WHAT entities can spawn, what they try to do to/for you, what structures can spawn, what info they are willing to give you, etc
